@@ -34,6 +34,11 @@ public class UserController {
     private UserService userService;
 
 
+    /**
+     * 用户注册接口。
+     * @param userRegisterRequest 注册请求体，包含账号、密码、确认密码
+     * @return 新用户ID
+     */
     @PostMapping("/register")
     public BaseResponse<Long> userRegister(@RequestBody UserRegisterRequest userRegisterRequest) {
         ThrowUtils.throwIf(userRegisterRequest == null, ErrorCode.PARAMS_ERROR);
@@ -44,7 +49,12 @@ public class UserController {
         return ResultUtils.success(result);
     }
 
-
+    /**
+     * 用户登录接口。
+     * @param userLoginRequest 登录请求体，包含账号、密码
+     * @param request HTTP请求对象
+     * @return 登录用户VO
+     */
     @PostMapping("/login")
     public BaseResponse<LoginUserVO> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
         ThrowUtils.throwIf(userLoginRequest == null, ErrorCode.PARAMS_ERROR);
@@ -54,21 +64,33 @@ public class UserController {
         return ResultUtils.success(loginUserVO);
     }
 
+    /**
+     * 获取当前登录用户信息。
+     * @param request HTTP请求对象
+     * @return 登录用户VO
+     */
     @GetMapping("/get/login")
     public BaseResponse<LoginUserVO> getLoginUser(HttpServletRequest request) {
         User loginUser = userService.getLoginUser(request);
         return ResultUtils.success(userService.getLoginUserVO(loginUser));
     }
 
-
+    /**
+     * 用户注销接口。
+     * @param request HTTP请求对象
+     * @return 是否注销成功
+     */
     @PostMapping("/logout")
     public BaseResponse<Boolean> userLogout(HttpServletRequest request) {
         ThrowUtils.throwIf(request == null, ErrorCode.PARAMS_ERROR);
         boolean result = userService.userLogout(request);
         return ResultUtils.success(result);
     }
+
     /**
-     * 创建用户
+     * 创建用户（仅管理员）。
+     * @param userAddRequest 新用户请求体
+     * @return 新用户ID
      */
     @PostMapping("/add")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
@@ -86,7 +108,9 @@ public class UserController {
     }
 
     /**
-     * 根据 id 获取用户（仅管理员）
+     * 根据 id 获取用户（仅管理员）。
+     * @param id 用户ID
+     * @return 用户实体
      */
     @GetMapping("/get")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)

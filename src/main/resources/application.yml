@@ -1,6 +1,10 @@
 spring:
   application:
     name: code-agent-backend
+
+  profiles:
+    active: local
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/code_agent_db

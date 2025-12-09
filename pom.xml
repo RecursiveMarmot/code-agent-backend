@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.com.timess</groupId>
-    <artifactId>code-agent</artifactId>
+    <artifactId>code-agent-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>code-agent</name>
     <description>code-agent</description>
@@ -41,6 +41,11 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <dependency>
             <groupId>com.mybatis-flex</groupId>
             <artifactId>mybatis-flex-spring-boot3-starter</artifactId>
             <version>1.11.0</version>
@@ -62,6 +67,22 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-reactor</artifactId>
+            <version>1.1.0-beta7</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-open-ai-spring-boot-starter</artifactId>
+            <version>1.1.0-beta7</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.24</version> <!-- 使用最新稳定版 -->
@@ -81,7 +102,6 @@
             <artifactId>hutool-all</artifactId>
             <version>5.8.38</version>
         </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
